@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Dancers | Premium Male Entertainment | Johannesburg</title>
+    <meta name="description" content="South Africa's premier male entertainment group. Professional dancers, topless waiters, bottomless butlers for bachelorette parties, birthdays & ladies nights in Johannesburg.">
+    <meta name="keywords" content="male strippers johannesburg, bachelorette party entertainment, topless waiters, male dancers south africa, ladies night entertainment">
+    
+    <!-- Schema.org for Entertainment Business -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EntertainmentBusiness",
+        "name": "Pulse Dancers",
+        "description": "Premium male entertainment and dance group",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Johannesburg",
+            "addressRegion": "Gauteng",
+            "addressCountry": "ZA"
+        },
+        "telephone": "+27-xxx-xxx-xxxx",
+        "url": "https://www.pulsedancers.com",
+        "sameAs": [
+            "https://www.facebook.com/pulseSouthAfrica",
+            "https://www.instagram.com/pulsesouthafrica"
+        ],
+        "priceRange": "$$",
+        "serviceType": "Entertainment Services"
+    }
+    </script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-bg: #0f0f0f;
+            --dark-card: #1a1a1a;
+            --dark-border: #333;
+            --text-light: #f5f5f5;
+            --text-gray: #a3a3a3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-red);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2a0000 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--text-light), var(--primary-red));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #b91c1c;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-light);
+            color: var(--dark-bg);
+        }
+
+        .btn-service {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .btn-service:hover {
+            background-color: #b91c1c;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--dark-border);
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+        }
+
+        .service-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Meet the Guys */
+        .guys-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .guy-card {
+            background: var(--dark-card);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--dark-border);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .guy-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+        }
+
+        .guy-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .guy-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .guy-name {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guy-specialties {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Forms */
+        .form-container {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--dark-border);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--dark-border);
+            border-radius: 5px;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator,
+        .form-group input[type="time"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(1);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .service-details {
+            background: var(--dark-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: 1px solid var(--dark-border);
+        }
+
+        .quantity-input {
+            width: 80px !important;
+            text-align: center;
+        }
+
+        .quote-display {
+            background: var(--primary-red);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .quote-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--dark-card);
+            border: 2px solid var(--primary-red);
+            border-radius: 10px;
+            padding: 1rem;
+            max-width: 250px;
+            z-index: 999;
+            display: none;
+        }
+
+        .quote-sidebar.active {
+            display: block;
+        }
+
+        .quote-items {
+            margin-bottom: 1rem;
+        }
+
+        .quote-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--dark-border);
+            font-size: 0.9rem;
+        }
+
+        .quote-total {
+            font-weight: bold;
+            color: var(--primary-red);
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--primary-red);
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-group {
+            margin-bottom: 2rem;
+        }
+
+        .faq-group-title {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: var(--text-light);
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .faq-question:hover {
+            background: var(--dark-bg);
+        }
+
+        .faq-answer {
+            padding: 0 1rem 1rem;
+            color: var(--text-gray);
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Social Section */
+        .social-section {
+            background: var(--dark-card);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 2px solid var(--dark-border);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            border-top: 1px solid var(--dark-border);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-sidebar {
+                position: static;
+                transform: none;
+                margin: 1rem 0;
+                max-width: none;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* File upload styling */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 12px;
+            background: var(--dark-bg);
+            border: 2px dashed var(--dark-border);
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .file-upload-label:hover {
+            border-color: var(--primary-red);
+        }
+
+        .file-info {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Google Maps */
+        #map {
+            height: 200px;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        /* CMS Image Placeholders */
+        .cms-image-placeholder {
+            background: var(--dark-border);
+            border: 2px dashed var(--text-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <!-- CMS Editable Logo -->
+                <img src="/admin/uploads/logo.png" alt="Pulse Dancers Logo" style="display: none;" id="logo-img">
+                <span>PULSE DANCERS</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#meet-guys">Meet the Guys</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#join">Join</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <!-- CMS Editable Hero Content -->
+                <h1 id="hero-title">South Africa's Premier Male Entertainment</h1>
+                <p id="hero-subtitle">Professional choreographed performances, topless waiters, and premium entertainment for bachelorette parties, birthdays, and ladies' nights across Johannesburg and beyond.</p>
+                <div class="cta-buttons">
+                    <a href="#booking" class="btn btn-primary" id="cta-primary">Book Your Event</a>
+                    <a href="#services" class="btn btn-secondary" id="cta-secondary">Our Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid" id="services-grid">
+                    <!-- Services will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Meet the Guys Section -->
+        <section id="meet-guys" class="section">
+            <div class="container">
+                <h2 class="section-title">Meet the Guys</h2>
+                <div class="guys-grid" id="guys-grid">
+                    <!-- CMS Editable Performer Profiles -->
+                    <div class="guy-card">
+                        <div class="cms-image-placeholder" style="height: 300px;">
+                            Add performer photo via CMS
+                        </div>
+                        <div class="guy-info">
+                            <div class="guy-name">Mike</div>
+                            <div class="guy-specialties">Specializes in: Dancing, Topless Waiter</div>
+                        </div>
+                    </div>
+                    <div class="guy-card">
+                        <div class="cms-image-placeholder" style="height: 300px;">
+                            Add performer photo via CMS
+                        </div>
+                        <div class="guy-info">
+                            <div class="guy-name">Jake</div>
+                            <div class="guy-specialties">Specializes in: Dancing, Games</div>
+                        </div>
+                    </div>
+                    <div class="guy-card">
+                        <div class="cms-image-placeholder" style="height: 300px;">
+                            Add performer photo via CMS
+                        </div>
+                        <div class="guy-info">
+                            <div class="guy-name">Ryan</div>
+                            <div class="guy-specialties">Specializes in: Bottomless Butler, Dancing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Sidebar -->
+        <div class="quote-sidebar" id="quote-sidebar">
+            <h4 style="color: var(--primary-red); margin-bottom: 1rem;">Your Quote</h4>
+            <div class="quote-items" id="quote-items">
+                <!-- Quote items will be added here -->
+            </div>
+            <div class="quote-total" id="quote-total">Total: R 0</div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="goToBooking()">
+                Book Now
+            </button>
+        </div>
+
+        <!-- Booking Form Section -->
+        <section id="booking" class="section">
+            <div class="container">
+                <h2 class="section-title">Book Your Event</h2>
+                <div class="form-container">
+                    <form id="booking-form" action="mailto:bookings@pulsedancers.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event-date">Date of Event *</label>
+                            <input type="date" id="event-date" name="event-date" required 
+                                   onclick="this.showPicker()" 
+                                   onfocus="this.showPicker()">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Reason for Event *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="bachelorette" name="event-reason" value="Bachelorette" required>
+                                    <label for="bachelorette">Bachelorette</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="birthday" name="event-reason" value="Birthday" required>
+                                    <label for="birthday">Birthday</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="ladies-night" name="event-reason" value="Ladies Night" required>
+                                    <label for="ladies-night">Ladies Night</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="other-reason" name="event-reason" value="Other" required>
+                                    <label for="other-reason">Other</label>
+                                </div>
+                            </div>
+                            <input type="text" id="other-reason-text" name="other-reason-text" placeholder="Please specify..." class="hidden" style="margin-top: 1rem;">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Where is the event? *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="know-area" name="event-location-type" value="area" required>
+                                    <label for="know-area">Know the area</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="know-address" name="event-location-type" value="address" required>
+                                    <label for="know-address">Know exact address</label>
+                                </div>
+                            </div>
+                            <input type="text" id="event-area" name="event-area" placeholder="Enter area..." class="hidden" style="margin-top: 1rem;">
+                            <input type="text" id="event-address" name="event-address" placeholder="Enter full address..." class="hidden" style="margin-top: 1rem;">
+                            <div id="map" class="hidden"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Selected Services:</label>
+                            <div id="booking-selected-services">
+                                <!-- Selected services from quote will appear here -->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="extra-notes">Anything extra you'd like to add or ask?</label>
+                            <textarea id="extra-notes" name="extra-notes" rows="4" placeholder="Tell us about any special requests or questions..."></textarea>
+                        </div>
+
+                        <div class="quote-display" id="booking-quote-display">
+                            Total Quote: R 0
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Booking Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Team Form Section -->
+        <section id="join" class="section">
+            <div class="container">
+                <h2 class="section-title">Join</h2>
+                <div class="form-container">
+                    <form id="join-form" action="mailto:info@pulsedancers.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="join-name">Name & Surname *</label>
+                            <input type="text" id="join-name" name="join-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-birthdate">Birth Date *</label>
+                            <input type="date" id="join-birthdate" name="join-birthdate" required
+                                   onclick="this.showPicker()" 
+                                   onfocus="this.showPicker()">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-address">Address *</label>
+                            <input type="text" id="join-address" name="join-address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-email">Email Address *</label>
+                            <input type="email" id="join-email" name="join-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-phone">Phone Number *</label>
+                            <input type="tel" id="join-phone" name="join-phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="full-body-photo">Full Body Shot (Topless) *</label>
+                            <div class="file-upload">
+                                <input type="file" id="full-body-photo" name="full-body-photo" accept="image/*" required>
+                                <label for="full-body-photo" class="file-upload-label">
+                                    <i class="fas fa-camera"></i> Click to upload full body photo
+                                </label>
+                                <div class="file-info" id="full-body-info">No file selected</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="face-photo">Full Face Photo *</label>
+                            <div class="file-upload">
+                                <input type="file" id="face-photo" name="face-photo" accept="image/*" required>
+                                <label for="face-photo" class="file-upload-label">
+                                    <i class="fas fa-camera"></i> Click to upload face photo
+                                </label>
+                                <div class="file-info" id="face-info">No file selected</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Roles Applying For *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="role-dancing" name="roles" value="Dancing">
+                                    <label for="role-dancing">Dancing</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="role-topless" name="roles" value="Topless Waitering">
+                                    <label for="role-topless">Topless Waitering</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="role-bottomless" name="roles" value="Bottomless Butler">
+                                    <label for="role-bottomless">Bottomless Butler</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Do you have any dance experience? *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="dance-yes" name="dance-experience" value="Yes" required>
+                                    <label for="dance-yes">Yes</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="dance-no" name="dance-experience" value="No" required>
+                                    <label for="dance-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Do you have any promotional experience? *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="promo-yes" name="promo-experience" value="Yes" required>
+                                    <label for="promo-yes">Yes</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="promo-no" name="promo-experience" value="No" required>
+                                    <label for="promo-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Do you have your own transport? *</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="transport-yes" name="transport" value="Yes" required>
+                                    <label for="transport-yes">Yes</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="transport-no" name="transport" value="No" required>
+                                    <label for="transport-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gym">Do you gym, if so where? *</label>
+                            <select id="gym" name="gym" required>
+                                <option value="">Select gym or other option...</option>
+                                <option value="Virgin Active - Sandton">Virgin Active - Sandton</option>
+                                <option value="Virgin Active - Rosebank">Virgin Active - Rosebank</option>
+                                <option value="Virgin Active - Melrose Arch">Virgin Active - Melrose Arch</option>
+                                <option value="Virgin Active - Fourways">Virgin Active - Fourways</option>
+                                <option value="Planet Fitness - Sandton">Planet Fitness - Sandton</option>
+                                <option value="Planet Fitness - Rosebank">Planet Fitness - Rosebank</option>
+                                <option value="Planet Fitness - Fourways">Planet Fitness - Fourways</option>
+                                <option value="Life Fitness - Sandton">Life Fitness - Sandton</option>
+                                <option value="Fitness Factory - Johannesburg">Fitness Factory - Johannesburg</option>
+                                <option value="Bodytec - Various Locations">Bodytec - Various Locations</option>
+                                <option value="Home gym">Home gym</option>
+                                <option value="Other">Other (please specify in skills section)</option>
+                                <option value="No">No, I don't gym</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="other-work">What do you do besides Modelling and promos? *</label>
+                            <input type="text" id="other-work" name="other-work" required placeholder="e.g., Student, Marketing, Fitness Instructor...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="skills">Any skills worth mentioning?</label>
+                            <textarea id="skills" name="skills" rows="3" placeholder="e.g., Acrobatics, martial arts, musical instruments, languages..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container" id="faq-container">
+                    <!-- FAQ items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Section -->
+        <section id="social" class="section social-section">
+            <div class="container">
+                <h2 class="section-title">Follow Us</h2>
+                <p>Stay connected for the latest updates, behind-the-scenes content, and event photos!</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/pulseSouthAfrica" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        Facebook Events
+                    </a>
+                    <a href="https://www.instagram.com/pulsesouthafrica" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        Follow on Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pulse Dancers. All rights reserved. | Premium male entertainment across South Africa</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration - Single source of truth for prices and services
+        const CONFIG = {
+            services: {
+                'Male Stripper': {
+                    types: {
+                        'Express Show (15 min)': 500,
+                        'Full Show (20-25 min)': 800
+                    },
+                    description: 'Professional choreographed performance with costume themes',
+                    defaultType: 'Full Show (20-25 min)',
+                    image: '/admin/uploads/male-stripper.jpg'
+                },
+                'Female Stripper': {
+                    types: {
+                        'Standard Show': 700,
+                        'Premium Show': 1000
+                    },
+                    description: 'Elegant and tasteful female entertainment',
+                    image: '/admin/uploads/female-stripper.jpg'
+                },
+                'Topless Waiter': {
+                    types: {
+                        'Per Waiter': 400
+                    },
+                    description: 'Professional service with black pants, collar & cuffs',
+                    image: '/admin/uploads/topless-waiter.jpg'
+                },
+                'Bottomless Butler': {
+                    types: {
+                        'Per Butler': 600
+                    },
+                    description: 'Premium service with black apron, collar & cuffs',
+                    image: '/admin/uploads/bottomless-butler.jpg'
+                },
+                'Games': {
+                    types: {
+                        'Naughty Games (30-45 min)': 350
+                    },
+                    description: '30-45 minutes of interactive fun with male performer',
+                    hideQuantity: true,
+                    image: '/admin/uploads/games.jpg'
+                },
+                'Pole Dancer': {
+                    types: {
+                        'Performance': 800
+                    },
+                    description: 'Skilled pole dancing entertainment',
+                    image: '/admin/uploads/pole-dancer.jpg'
+                },
+                'Pulse Group Show': {
+                    types: {
+                        'Group Performance (3+ performers)': 2000
+                    },
+                    description: 'Multiple performers choreographed group show',
+                    image: '/admin/uploads/group-show.jpg'
+                }
+            },
+            faq: {
+                'Topless Waiters': [
+                    {
+                        question: 'What is a topless waiter?',
+                        answer: 'Our topless waiters are suitable for events with conservative friends. They are shirtless, in black pants with collars & cuffs or black ties.'
+                    },
+                    {
+                        question: 'What services do topless waiters provide?',
+                        answer: 'They assist with serving drinks, pouring shots, and bringing out food. They also mingle with guests, create a fun atmosphere, and take photos.'
+                    },
+                    {
+                        question: 'Do they dance?',
+                        answer: 'Most do not dance, but some may perform a short lap dance if asked politely. Tipping R100-R150 is recommended for this.'
+                    },
+                    {
+                        question: 'Are body shots available?',
+                        answer: 'Yes, body shots are possible. A tip of R50 is recommended.'
+                    },
+                    {
+                        question: 'What should I prepare for a topless waiter\'s arrival?',
+                        answer: 'Provide a small area for them to change and freshen up. Have at least one bottle of shooters per waiter, along with a pourer and shooter glasses. Music is also recommended to create atmosphere.'
+                    },
+                    {
+                        question: 'Is a briefing necessary?',
+                        answer: 'Yes, brief the waiter on the conservatism level of the ladies to ensure a comfortable atmosphere.'
+                    }
+                ],
+                'Exotic Dancers (One-Man Show)': [
+                    {
+                        question: 'Are your performers strippers?',
+                        answer: 'No, they are exotic dancers. Shows are fully choreographed with no full nudity, only up to a g-string.'
+                    },
+                    {
+                        question: 'What is the show duration?',
+                        answer: 'The show is 20-25 minutes, performed to professionally edited music.'
+                    },
+                    {
+                        question: 'What happens after the show?',
+                        answer: 'Dancers stay for approximately 15 minutes for pictures, a quick drink, and mingling.'
+                    },
+                    {
+                        question: 'Should I brief the dancer?',
+                        answer: 'Yes, brief the dancer on the crowd\'s conservatism to ensure a comfortable atmosphere.'
+                    },
+                    {
+                        question: 'When is the best time to book a show?',
+                        answer: 'Book the show about 1.5 hours after guests are expected, or approximately 2 hours after the party\'s set start time if unsure. Avoid booking too late, as the guest of honor may be incapacitated. Guests should have had 2 or more drinks for a better show experience.'
+                    }
+                ],
+                'Bottomless Waiters': [
+                    {
+                        question: 'What is a bottomless waiter?',
+                        answer: 'This option provides everything a topless waiter offers with added "tease". They arrive in a black apron, collars, and cuffs or a black tie.'
+                    },
+                    {
+                        question: 'What services do bottomless waiters provide?',
+                        answer: 'They help with serving drinks, pouring shots, and bringing out food. They mingle, create a fun vibe, and take photos.'
+                    },
+                    {
+                        question: 'Do they dance?',
+                        answer: 'Most do not dance, but may do a short lap-dance if asked nicely. Tips of R50-R100 are recommended.'
+                    },
+                    {
+                        question: 'Are body shots available?',
+                        answer: 'Yes, body shots are possible. A tip of R50 is recommended.'
+                    },
+                    {
+                        question: 'What should I prepare for a bottomless waiter\'s arrival?',
+                        answer: 'Provide a small changing area and booze for them to distribute. One bottle of shooters per waiter is recommended, with a pourer and shooter glasses. Music is also advised.'
+                    },
+                    {
+                        question: 'Is a briefing necessary?',
+                        answer: 'Yes, brief the waiter on the conservatism level of the ladies.'
+                    },
+                    {
+                        question: 'Can I extend the booking time?',
+                        answer: 'Extensions are possible if the butlers are available. Payment for extended time must be made to the office the next working day; butlers cannot accept cash payments at the function.'
+                    },
+                    {
+                        question: 'Are there venue requirements for public places?',
+                        answer: 'If at a public venue (e.g., restaurant), ensure the function room is private and you have permission from the owners.'
+                    },
+                    {
+                        question: 'Are tips mandatory?',
+                        answer: 'Tipping is appreciated but not compulsory.'
+                    },
+                    {
+                        question: 'What about cold weather?',
+                        answer: 'During cold months, consider providing heaters for the butlers\' comfort.'
+                    }
+                ],
+                'General Information': [
+                    {
+                        question: 'What is your cancellation policy?',
+                        answer: 'Upon cancellation, R50 will be retained for admin and bank fees. Cancellations within 7 days of the booking date are not refunded due to staff being secured.'
+                    },
+                    {
+                        question: 'Can I book specific guys shown on the site?',
+                        answer: 'Bookings are based on availability. After providing your date and event details, you will be given a selection of available performers to choose from.'
+                    },
+                    {
+                        question: 'Can a friend join the dancer on stage during a show?',
+                        answer: 'Yes, this is possible at a cost of R150 per person. You must email or fill out a form to arrange this.'
+                    }
+                ],
+                'Games': [
+                    {
+                        question: 'What are "Naughty Games"?',
+                        answer: 'This involves a male performer leading guests through fun tasks, lasting approximately 30-45 minutes.'
+                    },
+                    {
+                        question: 'What kind of tasks are involved?',
+                        answer: 'Tasks include blowing up balloons and downing drinks, among others. The specific games depend on the performer and venue space.'
+                    },
+                    {
+                        question: 'Should I provide a briefing for the games?',
+                        answer: 'Yes, advise the performer on the conservatism of the girls upon arrival, as some games are more risqué.'
+                    },
+                    {
+                        question: 'What should I prepare for the games?',
+                        answer: 'Have 12 bottles of Brutal Fruit or Spin (or similar shaped bottles, not beer), one bottle of shooters (e.g., Sourz/Strawberry Lips), 20 shooter glasses, a pourer if possible, and music.'
+                    }
+                ]
+            }
+        };
+
+        // Quote management
+        let currentQuote = {};
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeServices();
+            initializeFAQ();
+            initializeBookingForm();
+            initializeJoinForm();
+            initializeNavigation();
+            loadQuoteFromStorage();
+        });
+
+        // Initialize Services Grid
+        function initializeServices() {
+            const servicesGrid = document.getElementById('services-grid');
+            
+            Object.entries(CONFIG.services).forEach(([serviceName, serviceData]) => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                
+                const minPrice = Math.min(...Object.values(serviceData.types));
+                
+                // Handle image placeholder or actual image
+                let imageHtml;
+                if (serviceData.image) {
+                    imageHtml = `<img src="${serviceData.image}" alt="${serviceName}" onerror="this.outerHTML='<div class=\\"cms-image-placeholder\\" style=\\"height: 200px;\\">Add ${serviceName} photo via CMS</div>'">`;
+                } else {
+                    imageHtml = `<div class="cms-image-placeholder" style="height: 200px;">Add ${serviceName} photo via CMS</div>`;
+                }
+                
+                serviceCard.innerHTML = `
+                    ${imageHtml}
+                    <h3>${serviceName}</h3>
+                    <p>${serviceData.description}</p>
+                    <div class="price">From R${minPrice}</div>
+                    <button class="btn btn-service" onclick="addToQuote('${serviceName}')">
+                        Add to Quote - R${minPrice}
+                    </button>
+                `;
+                
+                servicesGrid.appendChild(serviceCard);
+            });
+        }
+
+        // Add service to quote
+        function addToQuote(serviceName) {
+            const serviceData = CONFIG.services[serviceName];
+            if (!serviceData) return;
+            
+            // Use default type or first type
+            let selectedType, price;
+            if (serviceData.defaultType && serviceData.types[serviceData.defaultType]) {
+                selectedType = serviceData.defaultType;
+                price = serviceData.types[serviceData.defaultType];
+            } else {
+                [selectedType, price] = Object.entries(serviceData.types)[0];
+            }
+            
+            const quoteKey = `${serviceName}-${selectedType}`;
+            
+            if (currentQuote[quoteKey]) {
+                if (!serviceData.hideQuantity) {
+                    currentQuote[quoteKey].quantity += 1;
+                }
+            } else {
+                currentQuote[quoteKey] = {
+                    service: serviceName,
+                    type: selectedType,
+                    price: price,
+                    quantity: serviceData.hideQuantity ? 1 : 1,
+                    hideQuantity: serviceData.hideQuantity || false
+                };
+            }
+            
+            updateQuoteDisplay();
+            showQuoteSidebar();
+            saveQuoteToStorage();
+        }
+
+        // Update quote display
+        function updateQuoteDisplay() {
+            const quoteItems = document.getElementById('quote-items');
+            const quoteTotal = document.getElementById('quote-total');
+            const bookingQuoteDisplay = document.getElementById('booking-quote-display');
+            
+            quoteItems.innerHTML = '';
+            let total = 0;
+            
+            Object.entries(currentQuote).forEach(([key, item]) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const quoteItem = document.createElement('div');
+                quoteItem.className = 'quote-item';
+                
+                const quantityDisplay = item.hideQuantity ? '' : ` x${item.quantity}`;
+                
+                quoteItem.innerHTML = `
+                    <div>
+                        <div style="font-weight: bold;">${item.service}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-gray);">${item.type}${quantityDisplay}</div>
+                    </div>
+                    <div>
+                        <div>R${itemTotal}</div>
+                        <button onclick="removeFromQuote('${key}')" style="background: none; border: none; color: var(--primary-red); cursor: pointer; font-size: 0.8rem;">Remove</button>
+                    </div>
+                `;
+                
+                quoteItems.appendChild(quoteItem);
+            });
+            
+            quoteTotal.textContent = `Total: R ${total}`;
+            bookingQuoteDisplay.textContent = `Total Quote: R ${total}`;
+            
+            updateBookingSelectedServices();
+        }
+
+        // Remove from quote
+        function removeFromQuote(quoteKey) {
+            delete currentQuote[quoteKey];
+            updateQuoteDisplay();
+            saveQuoteToStorage();
+            
+            if (Object.keys(currentQuote).length === 0) {
+                hideQuoteSidebar();
+            }
+        }
+
+        // Show/hide quote sidebar
+        function showQuoteSidebar() {
+            document.getElementById('quote-sidebar').classList.add('active');
+        }
+
+        function hideQuoteSidebar() {
+            document.getElementById('quote-sidebar').classList.remove('active');
+        }
+
+        // Go to booking section
+        function goToBooking() {
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update booking form with selected services
+        function updateBookingSelectedServices() {
+            const container = document.getElementById('booking-selected-services');
+            container.innerHTML = '';
+            
+            Object.entries(currentQuote).forEach(([key, item]) => {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.className = 'service-details';
+                
+                const quantityInput = item.hideQuantity ? 
+                    `<input type="hidden" name="quantity-${item.service}" value="1">` :
+                    `
+                    <div class="form-group">
+                        <label for="quantity-${key}">How many?</label>
+                        <input type="number" id="quantity-${key}" name="quantity-${item.service}" 
+                               class="quantity-input" min="1" value="${item.quantity}" 
+                               onchange="updateQuoteQuantity('${key}', this.value)">
+                    </div>
+                    `;
+                
+                serviceDiv.innerHTML = `
+                    <h4>${item.service}</h4>
+                    <p><strong>${item.type}</strong> - R${item.price}</p>
+                    ${quantityInput}
+                    <div class="form-group">
+                        <label for="time-${key}">Time to start:</label>
+                        <input type="time" id="time-${key}" name="time-${item.service}" required
+                               onclick="this.showPicker()" 
+                               onfocus="this.showPicker()">
+                    </div>
+                `;
+                
+                container.appendChild(serviceDiv);
+            });
+        }
+
+        // Update quote quantity
+        function updateQuoteQuantity(quoteKey, newQuantity) {
+            if (currentQuote[quoteKey]) {
+                currentQuote[quoteKey].quantity = parseInt(newQuantity) || 1;
+                updateQuoteDisplay();
+                saveQuoteToStorage();
+            }
+        }
+
+        // Save/load quote to localStorage (for persistence)
+        function saveQuoteToStorage() {
+            localStorage.setItem('pulseQuote', JSON.stringify(currentQuote));
+        }
+
+        function loadQuoteFromStorage() {
+            const saved = localStorage.getItem('pulseQuote');
+            if (saved) {
+                currentQuote = JSON.parse(saved);
+                if (Object.keys(currentQuote).length > 0) {
+                    updateQuoteDisplay();
+                    showQuoteSidebar();
+                }
+            }
+        }
+
+        // Initialize FAQ
+        function initializeFAQ() {
+            const faqContainer = document.getElementById('faq-container');
+            
+            Object.entries(CONFIG.faq).forEach(([groupTitle, questions]) => {
+                const faqGroup = document.createElement('div');
+                faqGroup.className = 'faq-group';
+                
+                const groupTitleElement = document.createElement('h3');
+                groupTitleElement.className = 'faq-group-title';
+                groupTitleElement.textContent = groupTitle;
+                faqGroup.appendChild(groupTitleElement);
+                
+                questions.forEach((faq, index) => {
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'faq-item';
+                    
+                    faqItem.innerHTML = `
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ${faq.question}
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            ${faq.answer}
+                        </div>
+                    `;
+                    
+                    faqGroup.appendChild(faqItem);
+                });
+                
+                faqContainer.appendChild(faqGroup);
+            });
+        }
+
+        // Toggle FAQ function
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            answer.classList.toggle('active');
+            
+            if (answer.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Initialize Booking Form
+        function initializeBookingForm() {
+            // Add event listeners for form interactions
+            document.getElementById('other-reason').addEventListener('change', function() {
+                const otherReasonText = document.getElementById('other-reason-text');
+                if (this.checked) {
+                    otherReasonText.classList.remove('hidden');
+                    otherReasonText.required = true;
+                } else {
+                    otherReasonText.classList.add('hidden');
+                    otherReasonText.required = false;
+                }
+            });
+
+            document.getElementById('know-area').addEventListener('change', function() {
+                if (this.checked) {
+                    document.getElementById('event-area').classList.remove('hidden');
+                    document.getElementById('event-address').classList.add('hidden');
+                    document.getElementById('map').classList.add('hidden');
+                    document.getElementById('event-area').required = true;
+                    document.getElementById('event-address').required = false;
+                }
+            });
+
+            document.getElementById('know-address').addEventListener('change', function() {
+                if (this.checked) {
+                    document.getElementById('event-address').classList.remove('hidden');
+                    document.getElementById('event-area').classList.add('hidden');
+                    document.getElementById('map').classList.remove('hidden');
+                    document.getElementById('event-address').required = true;
+                    document.getElementById('event-area').required = false;
+                    
+                    // Initialize simple map placeholder
+                    initializeMap();
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('booking-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleBookingSubmission();
+            });
+        }
+
+        // Initialize simple map (placeholder for Google Maps integration)
+        function initializeMap() {
+            const mapDiv = document.getElementById('map');
+            mapDiv.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: var(--dark-border); color: var(--text-gray);">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                    Map view will show here (integrate Google Maps API)
+                </div>
+            `;
+        }
+
+        // Handle booking form submission
+        function handleBookingSubmission() {
+            const formData = new FormData(document.getElementById('booking-form'));
+            
+            // Get form values
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+            const eventDate = formData.get('event-date');
+            const eventReason = formData.get('event-reason');
+            const otherReasonText = formData.get('other-reason-text');
+            const eventLocationType = formData.get('event-location-type');
+            const eventArea = formData.get('event-area');
+            const eventAddress = formData.get('event-address');
+            const extraNotes = formData.get('extra-notes');
+            
+            // Get selected services from quote
+            const selectedServices = Object.values(currentQuote);
+            
+            // Create email body
+            const location = eventLocationType === 'area' ? eventArea : eventAddress;
+            const reason = eventReason === 'Other' ? otherReasonText : eventReason;
+            
+            const emailBody = `
+BOOKING REQUEST
+=================
+
+Client Details:
+- Name: ${name}
+- Phone: ${phone}
+- Email: ${email}
+- Event Date: ${eventDate}
+- Event Reason: ${reason}
+- Location: ${location}
+
+Services Requested:
+${selectedServices.map(service => `
+- ${service.service} (${service.type})
+  ${service.hideQuantity ? '' : `Quantity: ${service.quantity}`}
+  Price: R${service.price * service.quantity}
+`).join('')}
+
+Additional Notes:
+${extraNotes || 'None'}
+
+${document.getElementById('booking-quote-display').textContent}
+            `.trim();
+            
+            // Create mailto link
+            const subject = `${eventDate} - ${reason} - ${location} - ${name}`;
+            const mailtoLink = `mailto:bookings@pulsedancers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show confirmation
+            alert('Your booking request has been prepared! Your email client should open with the booking details. Please send the email to complete your booking request.');
+            
+            // Clear the quote after successful booking
+            currentQuote = {};
+            saveQuoteToStorage();
+            updateQuoteDisplay();
+            hideQuoteSidebar();
+        }
+
+        // Initialize Join Form
+        function initializeJoinForm() {
+            // Handle file uploads
+            document.getElementById('full-body-photo').addEventListener('change', function(e) {
+                handleFileUpload(e, 'full-body-info');
+            });
+            
+            document.getElementById('face-photo').addEventListener('change', function(e) {
+                handleFileUpload(e, 'face-info');
+            });
+            
+            // Handle form submission
+            document.getElementById('join-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleJoinSubmission();
+            });
+        }
+
+        // Handle file upload
+        function handleFileUpload(event, infoElementId) {
+            const file = event.target.files[0];
+            const infoElement = document.getElementById(infoElementId);
+            
+            if (file) {
+                infoElement.textContent = `Selected: ${file.name} (${Math.round(file.size / 1024)}KB)`;
+                
+                // Auto-resize image (simulated - in real implementation you'd use canvas)
+                if (file.size > 2 * 1024 * 1024) { // 2MB
+                    infoElement.textContent += ' - Large file will be resized automatically';
+                }
+            } else {
+                infoElement.textContent = 'No file selected';
+            }
+        }
+
+        // Handle join form submission
+        function handleJoinSubmission() {
+            const formData = new FormData(document.getElementById('join-form'));
+            
+            // Get selected roles
+            const roles = [];
+            const roleCheckboxes = document.querySelectorAll('input[name="roles"]:checked');
+            roleCheckboxes.forEach(checkbox => {
+                roles.push(checkbox.value);
+            });
+            
+            // Create email body
+            const emailBody = `
+NEW RECRUIT APPLICATION
+========================
+
+Personal Details:
+- Name: ${formData.get('join-name')}
+- Birth Date: ${formData.get('join-birthdate')}
+- Address: ${formData.get('join-address')}
+- Email: ${formData.get('join-email')}
+- Phone: ${formData.get('join-phone')}
+
+Application Details:
+- Roles Applying For: ${roles.join(', ')}
+- Dance Experience: ${formData.get('dance-experience')}
+- Promotional Experience: ${formData.get('promo-experience')}
+- Own Transport: ${formData.get('transport')}
+- Gym: ${formData.get('gym')}
+- Other Work: ${formData.get('other-work')}
+- Additional Skills: ${formData.get('skills') || 'None mentioned'}
+
+Photos:
+- Full Body Photo: ${document.getElementById('full-body-photo').files[0]?.name || 'Not uploaded'}
+- Face Photo: ${document.getElementById('face-photo').files[0]?.name || 'Not uploaded'}
+
+Note: Photos need to be attached separately to this email.
+            `.trim();
+            
+            // Create mailto link
+            const subject = `New Recruit - ${formData.get('join-name')}`;
+            const mailtoLink = `mailto:info@pulsedancers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show confirmation
+            alert('Your application has been prepared! Your email client should open with the application details. Please attach your photos and send the email to complete your application.');
+        }
+
+        // Initialize Navigation
+        function initializeNavigation() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Mobile menu toggle (basic implementation)
+            document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'var(--dark-bg)';
+                    navLinks.style.padding = '1rem';
+                    navLinks.style.borderTop = '1px solid var(--dark-border)';
+                }
+            });
+        }
+
+        // Date and time picker fixes for better mobile support
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure date inputs work properly
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                input.addEventListener('click', function() {
+                    if (this.showPicker) {
+                        this.showPicker();
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    if (this.showPicker) {
+                        this.showPicker();
+                    }
+                });
+            });
+            
+            // Ensure time inputs work properly
+            const timeInputs = document.querySelectorAll('input[type="time"]');
+            timeInputs.forEach(input => {
+                input.addEventListener('click', function() {
+                    if (this.showPicker) {
+                        this.showPicker();
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    if (this.showPicker) {
+                        this.showPicker();
+                    }
+                });
+            });
+        });
+
+        // CMS Integration Notes:
+        // 1. Logo: Replace src="/admin/uploads/logo.png" with actual logo path
+        // 2. Hero Content: Elements with IDs can be made editable via CMS
+        // 3. Service Images: Replace image paths in CONFIG.services
+        // 4. Meet the Guys: Replace placeholder content with actual performer data
+        // 5. All pricing in CONFIG.services is centralized for easy CMS editing
+        // 6. FAQ content in CONFIG.faq can be made CMS editable
+        
+        // Example CMS config structure:
+        /*
+        CMS Collections:
+        1. Settings (hero text, contact info, social links)
+        2. Services (name, description, types, prices, images)
+        3. Performers (name, photo, specialties)
+        4. FAQ (categories with questions and answers)
+        5. Gallery (images for various sections)
+        */
+    </script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</body>
+</html> 
