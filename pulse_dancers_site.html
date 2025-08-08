@@ -1,0 +1,1343 @@
+    <script>
+        // Slideshow functionality
+        function initSlideshows() {
+            document.querySelectorAll('.performer-slideshow').forEach(slideshow => {
+                const images = slideshow.querySelectorAll('img');
+                let currentIndex = 0;
+
+                setInterval(() => {
+                    images[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add('active');
+                }, 3000);
+            });
+        }
+
+        // Service rates matching your pricing
+        const serviceRates = {
+            'male-stripper': {
+                'xpress': 1500,
+                'full': 2000
+            },
+            'female-stripper': 2500,
+            'topless-waiter': 250,
+            'bottomless-butler': 350,
+            'games': 1650,
+            'pole-dancer': 2500
+        };
+
+        // Show/hide address sections
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'addressType') {
+                const exactAddress = document.getElementById('exactAddress');
+                const areaOnly = document.getElementById('areaOnly');
+                
+                if (e.target.value === 'know') {
+                    exactAddress.style.display = 'block';
+                    areaOnly.style.display = 'none';
+                    document.getElementById('eventAddress').required = true;
+                    document.getElementById('eventArea').required = false;
+                } else {
+                    exactAddress.style.display = 'none';
+                    areaOnly.style.display = 'block';
+                    document.getElementById('eventAddress').required = false;
+                    document.getElementById('eventArea').required = true;
+                }
+            }
+        });
+
+        // Show/hide service sections based on checkbox selection
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'services') {
+                const serviceValue = e.target.value;
+                const sectionId = serviceValue.replace('-', '') + 'Section';
+                const section = document.getElementById(sectionId);
+                
+                if (section) {
+                    section.style.display = e.target.checked ? 'block' : 'none';
+                }
+                
+                updateEstimate();
+            }
+        });
+
+        // Update calculations when service details change
+        document.addEventListener('input', function(e) {
+            if (e.target.closest('.service-section')) {
+                updateServiceCalculation(e.target);
+                updateEstimate();
+            }
+        });
+
+        document.addEventListener('change', function(e) {
+            if (e.target.closest('.service-section')) {
+                updateServiceCalculation(e.target);
+                updateEstimate();
+            }
+        });
+
+        function updateServiceCalculation(element) {
+            const section = element.closest('.service-section');
+            const sectionId = section.id;
+
+            if (sectionId === 'maleStripperSection') {
+                const count = parseInt(document.getElementById('maleStripperCount').value) || 1;
+                const showType = document.getElementById('stripperShowType').value;
+                const rate = serviceRates['male-stripper'][showType];
+                const total = rate * count;
+                
+                document.getElementById('maleStripperRate').textContent = `R${rate}`;
+                document.getElementById('maleStripperTotal').textContent = `R${total}`;
+            }
+            
+            else if (sectionId === 'femaleStripperSection') {
+                const count = parseInt(document.getElementById('femaleStripperCount').value) || 1;
+                const total = serviceRates['female-stripper'] * count;
+                document.getElementById('femaleStripperTotal').textContent = `R${total}`;
+            }
+            
+            else if (sectionId === 'toplessWaiterSection') {
+                const count = parseInt(document.getElementById('toplessWaiterCount').value) || 1;
+                const hours = parseInt(document.getElementById('toplessWaiterHours').value) || 2;
+                const rate = serviceRates['topless-waiter'];
+                const total = rate * count * hours;
+                
+                document.getElementById('toplessWaiterRate').textContent = `R${rate}`;
+                document.getElementById('toplessWaiterTotal').textContent = `R${total}`;
+            }
+            
+            else if (sectionId === 'bottomlessButlerSection') {
+                const count = parseInt(document.getElementById('bottomlessButlerCount').value) || 1;
+                const hours = parseInt(document.getElementById('bottomlessButlerHours').value) || 2;
+                const rate = serviceRates['bottomless-butler'];
+                const total = rate * count * hours;
+                
+                document.getElementById('bottomlessButlerRate').textContent = `R${rate}`;
+                document.getElementById('bottomlessButlerTotal').textContent = `R${total}`;
+            }
+        }
+
+        function calculateDistance(address) {
+            // Simple distance calculation from Sandton City
+            // In real implementation, you'd use Google Maps API
+            const commonAreas = {
+                'sandton': 0,
+                'johannesburg': 25,
+                'pretoria': 60,
+                'fourways': 15,
+                'midrand': 20,
+                'boksburg': 35,
+                'kempton park': 30,
+                'centurion': 50,
+                'roodepoort': 40,
+                'randburg': 20
+            };
+            
+            const addressLower = address.toLowerCase();
+            for (const [area, distance] of Object.entries(commonAreas)) {
+                if (addressLower.includes(area)) {
+                    return distance;
+                }
+            }
+            
+            // Default estimate
+            return 30;
+        }
+
+        function updateEstimate() {
+            const services = document.querySelectorAll('input[name="services"]:checked');
+            let total = 0;
+            let details = '';
+
+            services.forEach(service => {
+                const serviceValue = service.value;
+                let cost = 0;
+
+                switch(serviceValue) {
+                    case 'male-stripper':
+                        const maleCount = parseInt(document.getElementById('maleStripperCount').value) || 1;
+                        const showType = document.getElementById('stripperShowType').value || 'xpress';
+                        cost = serviceRates['male-stripper'][showType] * maleCount;
+                        details += `<div class="estimate-line"><span>Male Stripper (${maleCount}x ${showType})</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'female-stripper':
+                        const femaleCount = parseInt(document.getElementById('femaleStripperCount').value) || 1;
+                        cost = serviceRates['female-stripper'] * femaleCount;
+                        details += `<div class="estimate-line"><span>Female Stripper (${femaleCount}x)</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'topless-waiter':
+                        const waiterCount = parseInt(document.getElementById('toplessWaiterCount').value) || 1;
+                        const waiterHours = parseInt(document.getElementById('toplessWaiterHours').value) || 2;
+                        cost = serviceRates['topless-waiter'] * waiterCount * waiterHours;
+                        details += `<div class="estimate-line"><span>Topless Waiter (${waiterCount}x ${waiterHours}h)</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'bottomless-butler':
+                        const butlerCount = parseInt(document.getElementById('bottomlessButlerCount').value) || 1;
+                        const butlerHours = parseInt(document.getElementById('bottomlessButlerHours').value) || 2;
+                        cost = serviceRates['bottomless-butler'] * butlerCount * butlerHours;
+                        details += `<div class="estimate-line"><span>Bottomless Butler (${butlerCount}x ${butlerHours}h)</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'games':
+                        cost = serviceRates['games'];
+                        details += `<div class="estimate-line"><span>Games (35 min)</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'pole-dancer':
+                        cost = serviceRates['pole-dancer'];
+                        details += `<div class="estimate-line"><span>Pole Dancer (1 hour)</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'pulse-group-show':
+                        cost = 5000; // Estimated group show rate
+                        details += `<div class="estimate-line"><span>Pulse Group Show</span><span>R${cost}</span></div>`;
+                        break;
+                        
+                    case 'other':
+                        cost = 2000; // Estimated other service rate
+                        details += `<div class="estimate-line"><span>Other Service</span><span>R${cost}</span></div>`;
+                        break;
+                }
+
+                total += cost;
+            });
+
+            // Calculate travel fee
+            const address = document.getElementById('eventAddress').value || document.getElementById('eventArea').value;
+            
+            if (address && address.trim()) {
+                const distance = calculateDistance(address);
+                const roundTripKm = distance * 2;
+                const kmBeyond50 = Math.max(0, roundTripKm - 50);
+                const travelFee = kmBeyond50 * 4;
+                
+                if (travelFee > 0) {
+                    details += `<div class="estimate-line"><span>Travel Fee (${roundTripKm}km total, ${kmBeyond50}km × R4)</span><span>R${travelFee}</span></div>`;
+                    total += travelFee;
+                }
+            }
+
+            document.getElementById('estimateDetails').innerHTML = details;
+            document.getElementById('totalAmount').innerHTML = `<strong>R${total}</strong>`;
+        }
+
+        function clearForm() {
+            document.getElementById('bookingForm').reset();
+            document.querySelectorAll('.service-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            updateEstimate();
+        }
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+            
+            // Collect all form data
+            const bookingData = {
+                hostName: formData.get('hostName'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                eventDate: formData.get('eventDate'),
+                eventReason: formData.get('eventReason'),
+                address: formData.get('eventAddress') || formData.get('eventArea'),
+                services: services,
+                additionalInfo: formData.get('additionalInfo'),
+                estimate: document.getElementById('totalAmount').textContent
+            };
+
+            // Add service-specific details
+            if (services.includes('male-stripper')) {
+                bookingData.maleStripper = {
+                    count: document.getElementById('maleStripperCount').value,
+                    showType: document.getElementById('stripperShowType').value,
+                    time: document.getElementById('maleStripperTime').value
+                };
+            }
+            
+            if (services.includes('female-stripper')) {
+                bookingData.femaleStripper = {
+                    count: document.getElementById('femaleStripperCount').value,
+                    time: document.getElementById('femaleStripperTime').value
+                };
+            }
+            
+            if (services.includes('topless-waiter')) {
+                bookingData.toplessWaiter = {
+                    count: document.getElementById('toplessWaiterCount').value,
+                    hours: document.getElementById('toplessWaiterHours').value,
+                    time: document.getElementById('toplessWaiterTime').value
+                };
+            }
+            
+            if (services.includes('bottomless-butler')) {
+                bookingData.bottomlessButler = {
+                    count: document.getElementById('bottomlessButlerCount').value,
+                    hours: document.getElementById('bottomlessButlerHours').value,
+                    time: document.getElementById('bottomlessButlerTime').value
+                };
+            }
+            
+            if (services.includes('games')) {
+                bookingData.games = {
+                    time: document.getElementById('gamesTime').value
+                };
+            }
+            
+            if (services.includes('pole-dancer')) {
+                bookingData.poleDancer = {
+                    time: document.getElementById('poleDancerTime').value
+                };
+            }
+
+            // Create detailed email content
+            let emailContent = `NEW BOOKING REQUEST - Pulse Dancers Website\n\n`;
+            emailContent += `CONTACT INFORMATION:\n`;
+            emailContent += `Name: ${bookingData.hostName}\n`;
+            emailContent += `Phone: ${bookingData.phone}\n`;
+            emailContent += `Email: ${bookingData.email}\n\n`;
+            
+            emailContent += `EVENT DETAILS:\n`;
+            emailContent += `Date: ${bookingData.eventDate}\n`;
+            emailContent += `Reason: ${bookingData.eventReason}\n`;
+            emailContent += `Address: ${bookingData.address}\n\n`;
+            
+            emailContent += `SERVICES REQUESTED:\n`;
+            services.forEach(service => {
+                emailContent += `✓ ${service.replace('-', ' ').toUpperCase()}\n`;
+            });
+            
+            if (bookingData.maleStripper) {
+                emailContent += `\nMALE STRIPPER DETAILS:\n`;
+                emailContent += `Count: ${bookingData.maleStripper.count}\n`;
+                emailContent += `Show Type: ${bookingData.maleStripper.showType}\n`;
+                emailContent += `Start Time: ${bookingData.maleStripper.time}\n`;
+            }
+            
+            if (bookingData.femaleStripper) {
+                emailContent += `\nFEMALE STRIPPER DETAILS:\n`;
+                emailContent += `Count: ${bookingData.femaleStripper.count}\n`;
+                emailContent += `Start Time: ${bookingData.femaleStripper.time}\n`;
+            }
+            
+            if (bookingData.toplessWaiter) {
+                emailContent += `\nTOPLESS WAITER DETAILS:\n`;
+                emailContent += `Count: ${bookingData.toplessWaiter.count}\n`;
+                emailContent += `Hours: ${bookingData.toplessWaiter.hours}\n`;
+                emailContent += `Start Time: ${bookingData.toplessWaiter.time}\n`;
+            }
+            
+            if (bookingData.bottomlessButler) {
+                emailContent += `\nBOTTOMLESS BUTLER DETAILS:\n`;
+                emailContent += `Count: ${bookingData.bottomlessButler.count}\n`;
+                emailContent += `Hours: ${bookingData.bottomlessButler.hours}\n`;
+                emailContent += `Start Time: ${bookingData.bottomlessButler.time}\n`;
+            }
+            
+            if (bookingData.games) {
+                emailContent += `\nGAMES DETAILS:\n`;
+                emailContent += `Start Time: ${bookingData.games.time}\n`;
+            }
+            
+            if (bookingData.poleDancer) {
+                emailContent += `\nPOLE DANCER DETAILS:\n`;
+                emailContent += `Start Time: ${bookingData.poleDancer.time}\n`;
+            }
+            
+            if (bookingData.additionalInfo) {
+                emailContent += `\nADDITIONAL INFORMATION:\n${bookingData.additionalInfo}\n`;
+            }
+            
+            emailContent += `\nESTIMATED TOTAL: ${bookingData.estimate}\n`;
+            emailContent += `\n---\nThis booking was submitted via the Pulse Dancers website.`;
+
+            // Create mailto link
+            const subject = encodeURIComponent(`New Booking Request - ${bookingData.hostName} - ${bookingData.eventDate}`);
+            const body = encodeURIComponent(emailContent);
+            const mailtoLink = `mailto:bookings@pulsedancers.com?subject=${subject}&body=${body}`;
+
+            // Try to open email client
+            window.location.href = mailtoLink;
+
+            // Show success message
+            alert('Booking form prepared! Your email client should open with the booking details. If it doesn\'t open automatically, please copy the information and email it to bookings@pulsedancers.com');
+            
+            // Optional: Clear form after submission
+            // clearForm();
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlideshows();
+            
+            // Initialize default calculations
+            updateEstimate();
+            
+            // Set default values for service sections
+            document.getElementById('maleStripperCount').value = 1;
+            document.getElementById('femaleStripperCount').value = 1;
+            document.getElementById('toplessWaiterCount').value = 1;
+            document.getElementById('toplessWaiterHours').value = 2;
+            document.getElementById('bottomlessButlerCount').value = 1;
+            document.getElementById('bottomlessButlerHours').value = 2;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Dancers - South Africa's Premier Male Entertainment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d1b69);
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(0,0,0,0.9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23000" width="1200" height="600"/></svg>');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ff6b6b;
+        }
+
+        .landing-text {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .performers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .performer-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .performer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .performer-slideshow {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .performer-slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .performer-slideshow img.active {
+            opacity: 1;
+        }
+
+        .performer-info {
+            padding: 1.5rem;
+        }
+
+        .performer-info h3 {
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .booking-form {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-section {
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .form-section h4 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .estimate-box {
+            background: rgba(255,107,107,0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border: 2px solid #ff6b6b;
+        }
+
+        .estimate-box h4 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .estimate-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+        }
+
+        .estimate-total {
+            border-top: 2px solid #ff6b6b;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .service-section {
+            display: none;
+            border-left: 3px solid #ff6b6b;
+            padding-left: 1rem;
+        }
+
+        .address-section {
+            margin-top: 1rem;
+        }
+
+        .cost-display {
+            background: rgba(255,107,107,0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .cost-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+        }
+
+        .cost-line.total {
+            border-top: 1px solid #ff6b6b;
+            padding-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">PULSE DANCERS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#performers">Meet the Guys</a></li>
+                <li><a href="#booking">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>PULSE DANCERS</h1>
+            <p>South Africa's Premier Male Entertainment</p>
+            <a href="#booking" class="cta-button">Book Your Event</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="landing-text">
+                <p><strong>We have what you need!</strong></p>
+                <p><strong>Pulse Dancers</strong> is all about serious quality and South Africa's <strong>BEST</strong> male entertainment. These men are handpicked and only available here. Your Party, will be the one that everyone wish they had!</p>
+                
+                <p><strong>Do you own a venue?</strong> Host a packed "Ladies Night" with our famous choreographed Strip Show, MC, topless waiters and sexy, trained podium dancers to entertain the crowds. Trust Pulse Dancers to cash in on a venue filled with ladies.</p>
+                
+                <p><strong>Undoubtedly</strong> the Greatest Male dance crew, dedicated to perfection and to fulfill every female fantasy.</p>
+                
+                <p><strong>Based</strong> in Johannesburg, South Africa; but to meet the demand, we do international tours and regular visits to: Durban, Cape Town, Eastern Cape, Namibia, North West and anywhere else where there are fans in need of some SEXY entertainment.</p>
+                
+                <p><strong>Welcome to PULSE.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Male Strip Shows</h3>
+                    <p><strong>Man Xpress Show</strong> - R1500 (13 Minutes long)</p>
+                    <p><strong>Man Show</strong> - R2000 (20 Minutes long)</p>
+                    <p><strong>Man Show</strong> - R6400 (25 Minutes long)</p>
+                    <p><strong>Duo Show</strong> - R2000 (30 Minutes long)</p>
+                    <p><strong>Man Show</strong> - R8500 (35 Minutes long)</p>
+                    <p><strong>Duo Show</strong> - R10000 (40 Minutes long)</p>
+                    <p><strong>Man Show</strong> - R12000 (45 Minutes long)</p>
+                    <p><strong>Fun Games</strong> - R1650 (30 Minutes long)</p>
+                    <p><em>The above durations are purely a guideline as to the approximate performance time.</em></p>
+                    <p><strong>Rates exclude substance and transport.</strong></p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Waiters</h3>
+                    <p><strong>Topless Waiters:</strong></p>
+                    <p>• R250 per hour per guy (minimum 2 hours)</p>
+                    <p>• R550 per guy if it's only for 1 hour</p>
+                    <p><strong>Bottomless Waiters:</strong></p>
+                    <p>• R350 per hour per guy (minimum 2 hours)</p>
+                    <p>• R550 per guy if it's only for 1 hour</p>
+                    <p><strong>Pole Dancers:</strong></p>
+                    <p>• R2500 (1 hour Demo)</p>
+                    <p>• Done by a professional female Pole Dancer</p>
+                    <p><strong>Rates exclude substance and transport.</strong></p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Other Entertainment</h3>
+                    <p><strong>Professional Choreographed shows</strong> - Event based pricing</p>
+                    <p><strong>MC Services</strong> - Available on request</p>
+                    <p><strong>Podium dancers / club dancers</strong></p>
+                    <p>• R1800 per hour per girl (minimum 3 hours = 15 minutes sets, usually over a 2 hour turn around time)</p>
+                    <p><strong>Fire Dancers (per artist)</strong> - R2500 per hour (1hr min), R4k for 2 hours - Event based pricing</p>
+                    <p><strong>Strength Acts</strong> - Event based pricing</p>
+                    <p><strong>Female strippers</strong> - R2500 per hour for full nude</p>
+                    <p><strong>LED Dancers</strong> - R2500 per hour</p>
+                    <p><strong>Lingerie Models</strong> - R1000 per hour per girl (minimum of 2 girls, for 2 hours. Female Models: R500)</p>
+                    <p><strong>Topless Female Models</strong> - R1400 per hour per girl (minimum of 2 girls, for 2 hours: R500)</p>
+                    <p><strong>DJ's</strong> - Event based pricing</p>
+                    <p><strong>Sound and light hire</strong></p>
+                    <p><strong>MC</strong> - R1500 per hour</p>
+                    <p><strong>Promoters (male and female)</strong> - R450 per hour</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="performers" class="section">
+        <div class="container">
+            <h2>Meet the Guys</h2>
+            <div class="performers-grid">
+                <div class="performer-card">
+                    <div class="performer-slideshow" data-performer="mike">
+                        <img src="https://via.placeholder.com/300x300/ff6b6b/ffffff?text=Mike+Photo+1" alt="Mike Photo 1" class="active">
+                        <img src="https://via.placeholder.com/300x300/8e44ad/ffffff?text=Mike+Photo+2" alt="Mike Photo 2">
+                        <img src="https://via.placeholder.com/300x300/3498db/ffffff?text=Mike+Photo+3" alt="Mike Photo 3">
+                    </div>
+                    <div class="performer-info">
+                        <h3>Mike</h3>
+                        <p>Specializes in: Dancing, Topless Waiter</p>
+                    </div>
+                </div>
+
+                <div class="performer-card">
+                    <div class="performer-slideshow" data-performer="jake">
+                        <img src="https://via.placeholder.com/300x300/e74c3c/ffffff?text=Jake+Photo+1" alt="Jake Photo 1" class="active">
+                        <img src="https://via.placeholder.com/300x300/f39c12/ffffff?text=Jake+Photo+2" alt="Jake Photo 2">
+                        <img src="https://via.placeholder.com/300x300/27ae60/ffffff?text=Jake+Photo+3" alt="Jake Photo 3">
+                    </div>
+                    <div class="performer-info">
+                        <h3>Jake</h3>
+                        <p>Specializes in: Dancing, Games</p>
+                    </div>
+                </div>
+
+                <div class="performer-card">
+                    <div class="performer-slideshow" data-performer="ryan">
+                        <img src="https://via.placeholder.com/300x300/9b59b6/ffffff?text=Ryan+Photo+1" alt="Ryan Photo 1" class="active">
+                        <img src="https://via.placeholder.com/300x300/34495e/ffffff?text=Ryan+Photo+2" alt="Ryan Photo 2">
+                        <img src="https://via.placeholder.com/300x300/16a085/ffffff?text=Ryan+Photo+3" alt="Ryan Photo 3">
+                    </div>
+                    <div class="performer-info">
+                        <h3>Ryan</h3>
+                        <p>Specializes in: Bottomless Butler, Dancing</p>
+                    </div>
+                </div>
+
+                <div class="performer-card">
+                    <div class="performer-slideshow" data-performer="eli">
+                        <img src="https://via.placeholder.com/300x300/e67e22/ffffff?text=Eli+Photo+1" alt="Eli Photo 1" class="active">
+                        <img src="https://via.placeholder.com/300x300/2c3e50/ffffff?text=Eli+Photo+2" alt="Eli Photo 2">
+                        <img src="https://via.placeholder.com/300x300/c0392b/ffffff?text=Eli+Photo+3" alt="Eli Photo 3">
+                    </div>
+                    <div class="performer-info">
+                        <h3>Eli</h3>
+                        <p>Specializes in: Dancing, Entertainment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="section">
+        <div class="container">
+            <h2>Book Your Event</h2>
+            <form class="booking-form" id="bookingForm">
+                <!-- Contact Info -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hostName">Name: *</label>
+                        <input type="text" id="hostName" name="hostName" placeholder="The name of the host" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number: *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Eg. 0844196969" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-mail: *</label>
+                        <input type="email" id="email" name="email" placeholder="E.g. Mary@iWantHotness.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Date of Event: *</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventReason">Reason for event: *</label>
+                    <select id="eventReason" name="eventReason" required>
+                        <option value="">Select reason</option>
+                        <option value="bachelorette">Bachelorette</option>
+                        <option value="birthday">Birthday</option>
+                        <option value="ladies-night">Ladies night</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Address Section -->
+                <div class="form-section">
+                    <h4>Address of Event: *</h4>
+                    <div class="form-group">
+                        <input type="radio" id="knowAddress" name="addressType" value="know" checked>
+                        <label for="knowAddress">I know the exact address.</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="knowArea" name="addressType" value="area">
+                        <label for="knowArea">I am not sure yet, but I know what area.</label>
+                    </div>
+                    
+                    <div id="exactAddress" class="address-section">
+                        <div class="form-group">
+                            <label for="eventAddress">Type the address:</label>
+                            <input type="text" id="eventAddress" name="eventAddress" placeholder="Full address of the venue">
+                        </div>
+                    </div>
+                    
+                    <div id="areaOnly" class="address-section" style="display: none;">
+                        <div class="form-group">
+                            <label for="eventArea">Area of Event:</label>
+                            <input type="text" id="eventArea" name="eventArea" placeholder="E.g. Fourways, Boksburg...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Selection -->
+                <div class="form-section">
+                    <h4>I would like to book a: (Pick one or more) *</h4>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="groupShow" name="services" value="pulse-group-show">
+                            <label for="groupShow">Pulse Group Show.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="maleStripper" name="services" value="male-stripper">
+                            <label for="maleStripper">Male Stripper.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="femaleStripper" name="services" value="female-stripper">
+                            <label for="femaleStripper">Female Stripper.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="toplessWaiter" name="services" value="topless-waiter">
+                            <label for="toplessWaiter">Topless Waiter.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bottomlessButler" name="services" value="bottomless-butler">
+                            <label for="bottomlessButler">Bottomless Butler.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="games" name="services" value="games">
+                            <label for="games">Games.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="poleDancer" name="services" value="pole-dancer">
+                            <label for="poleDancer">Pole Dancer.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="otherService" name="services" value="other">
+                            <label for="otherService">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Male Stripper Section -->
+                <div id="maleStripperSection" class="form-section service-section" style="display: none;">
+                    <h4>Male stripper section</h4>
+                    <p>Male Stripper (Approximately 20 minutes long)</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maleStripperCount">How many Male Strippers? *</label>
+                            <input type="number" id="maleStripperCount" name="maleStripperCount" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="stripperShowType">Type of show *</label>
+                            <select id="stripperShowType" name="stripperShowType">
+                                <option value="xpress">Xpress show (13 mins)</option>
+                                <option value="full">Full show (20 mins)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maleStripperTime">Time to start Male strip show: *</label>
+                        <input type="time" id="maleStripperTime" name="maleStripperTime">
+                    </div>
+                    
+                    <div class="cost-display">
+                        <div class="cost-line">
+                            <span>Cost per Male stripper:</span>
+                            <span id="maleStripperRate">R1500</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span>Male Stripper total cost:</span>
+                            <span id="maleStripperTotal">R1500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Female Stripper Section -->
+                <div id="femaleStripperSection" class="form-section service-section" style="display: none;">
+                    <h4>Female stripper section</h4>
+                    <p>Female Stripper (Approximately 20 minutes long)</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="femaleStripperCount">How many Female Strippers? *</label>
+                            <input type="number" id="femaleStripperCount" name="femaleStripperCount" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="femaleStripperTime">Time to start female strip show: *</label>
+                            <input type="time" id="femaleStripperTime" name="femaleStripperTime">
+                        </div>
+                    </div>
+                    
+                    <div class="cost-display">
+                        <div class="cost-line total">
+                            <span>Female Stripper total cost:</span>
+                            <span id="femaleStripperTotal">R2500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topless Waiter Section -->
+                <div id="toplessWaiterSection" class="form-section service-section" style="display: none;">
+                    <h4>Topless waiter section</h4>
+                    <p>Topless Waiters</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="toplessWaiterCount">How many Topless waiters? *</label>
+                            <input type="number" id="toplessWaiterCount" name="toplessWaiterCount" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="toplessWaiterHours">How many hours? *</label>
+                            <input type="number" id="toplessWaiterHours" name="toplessWaiterHours" min="1" value="2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toplessWaiterTime">Time to start Topless Waiters: *</label>
+                        <input type="time" id="toplessWaiterTime" name="toplessWaiterTime">
+                    </div>
+                    
+                    <div class="cost-display">
+                        <div class="cost-line">
+                            <span>Cost per waiter / h:</span>
+                            <span id="toplessWaiterRate">R250</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span>Topless waiters total cost:</span>
+                            <span id="toplessWaiterTotal">R500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottomless Butler Section -->
+                <div id="bottomlessButlerSection" class="form-section service-section" style="display: none;">
+                    <h4>Bottomless butler section</h4>
+                    <p>Bottomless Butlers</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bottomlessButlerCount">How many Bottomless Butlers? *</label>
+                            <input type="number" id="bottomlessButlerCount" name="bottomlessButlerCount" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="bottomlessButlerHours">How many hours? *</label>
+                            <input type="number" id="bottomlessButlerHours" name="bottomlessButlerHours" min="1" value="2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bottomlessButlerTime">Time to start Bottomless Butlers: *</label>
+                        <input type="time" id="bottomlessButlerTime" name="bottomlessButlerTime">
+                    </div>
+                    
+                    <div class="cost-display">
+                        <div class="cost-line">
+                            <span>Cost per butler / h:</span>
+                            <span id="bottomlessButlerRate">R350</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span>Bottomless butlers total cost:</span>
+                            <span id="bottomlessButlerTotal">R700</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Games Section -->
+                <div id="gamesSection" class="form-section service-section" style="display: none;">
+                    <h4>Games section</h4>
+                    <p>Games (Approximately 35 minutes long)</p>
+                    
+                    <div class="form-group">
+                        <label for="gamesTime">Time to start Games: *</label>
+                        <input type="time" id="gamesTime" name="gamesTime">
+                    </div>
+                    
+                    <div class="cost-display">
+                        <div class="cost-line total">
+                            <span>Games total cost:</span>
+                            <span id="gamesTotal">R1650</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pole Dancer Section -->
+                <div id="poleDancerSection" class="form-section service-section" style="display: none;">
+                    <h4>Pole dancer section</h4>
+                    <p>Pole dancer (Approximately 1 Hour long)</p>
+                    
+                    <div class="form-group">
+                        <label for="poleDancerTime">Time to start Pole dancer: *</label>
+                        <input type="time" id="poleDancerTime" name="poleDancerTime">
+                    </div>
+                    
+                    <div class="cost-display">
+                        <div class="cost-line total">
+                            <span>Pole dancer total cost:</span>
+                            <span id="poleDancerTotal">R2500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalInfo">Anything extra you would like to add or ask?</label>
+                    <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Any special requests or additional information..."></textarea>
+                </div>
+
+                <div class="estimate-box" id="estimateBox">
+                    <h4>Booking Estimate</h4>
+                    <div id="estimateDetails"></div>
+                    <div class="estimate-total">
+                        <div class="estimate-line">
+                            <span><strong>TOTAL ESTIMATE:</strong></span>
+                            <span id="totalAmount"><strong>R0</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="cta-button">Submit Form</button>
+                    <button type="button" class="cta-button" onclick="clearForm()">Clear Form</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Slideshow functionality
+        function initSlideshows() {
+            document.querySelectorAll('.performer-slideshow').forEach(slideshow => {
+                const images = slideshow.querySelectorAll('img');
+                let currentIndex = 0;
+
+                setInterval(() => {
+                    images[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add('active');
+                }, 3000);
+            });
+        }
+
+        // Booking form functionality
+        const serviceRates = {
+            'male-stripper': {
+                'xpress': 1500,
+                'standard': 2000,
+                '25min': 6400,
+                '35min': 8500
+            },
+            'topless-waiter': 250,
+            'bottomless-butler': 350,
+            'games': 1650,
+            'pole-dancer': 2500,
+            'female-stripper': 2500
+        };
+
+        function calculateDistance(address) {
+            // Simplified distance calculation - in real implementation, use Google Maps API
+            // For demo purposes, assume average distance from Sandton
+            const estimatedKm = Math.floor(Math.random() * 50) + 10; // Random between 10-60km
+            return estimatedKm;
+        }
+
+        function updateEstimate() {
+            const services = document.querySelectorAll('input[name="services"]:checked');
+            const address = document.getElementById('eventAddress').value;
+            
+            if (services.length === 0) return;
+
+            let total = 0;
+            let details = '';
+
+            services.forEach(service => {
+                const serviceValue = service.value;
+                let cost = 0;
+
+                switch(serviceValue) {
+                    case 'male-stripper':
+                        cost = serviceRates['male-stripper']['standard'];
+                        details += `<div class="estimate-line"><span>Male Stripper (Standard Show)</span><span>R${cost}</span></div>`;
+                        break;
+                    case 'topless-waiter':
+                        cost = serviceRates['topless-waiter'] * 2; // Minimum 2 hours
+                        details += `<div class="estimate-line"><span>Topless Waiter (2 hours)</span><span>R${cost}</span></div>`;
+                        break;
+                    case 'bottomless-butler':
+                        cost = serviceRates['bottomless-butler'] * 2; // Minimum 2 hours
+                        details += `<div class="estimate-line"><span>Bottomless Butler (2 hours)</span><span>R${cost}</span></div>`;
+                        break;
+                    case 'games':
+                        cost = serviceRates['games'];
+                        details += `<div class="estimate-line"><span>Games (30 minutes)</span><span>R${cost}</span></div>`;
+                        break;
+                    case 'pole-dancer':
+                        cost = serviceRates['pole-dancer'];
+                        details += `<div class="estimate-line"><span>Pole Dancer (1 hour)</span><span>R${cost}</span></div>`;
+                        break;
+                    case 'female-stripper':
+                        cost = serviceRates['female-stripper'];
+                        details += `<div class="estimate-line"><span>Female Stripper (1 hour)</span><span>R${cost}</span></div>`;
+                        break;
+                    default:
+                        cost = 2000; // Default rate
+                        details += `<div class="estimate-line"><span>${serviceValue.replace('-', ' ').toUpperCase()}</span><span>R${cost}</span></div>`;
+                }
+
+                total += cost;
+            });
+
+            // Calculate travel fee if address is provided
+            if (address.trim()) {
+                const distance = calculateDistance(address);
+                const roundTripKm = (distance - 50) > 0 ? (distance - 50) * 2 : 0; // Only charge beyond 50km
+                const travelFee = Math.max(0, roundTripKm * 4);
+                
+                if (travelFee > 0) {
+                    details += `<div class="estimate-line"><span>Travel Fee (${roundTripKm}km × R4)</span><span>R${travelFee}</span></div>`;
+                    total += travelFee;
+                }
+            }
+
+            document.getElementById('estimateDetails').innerHTML = details;
+            document.getElementById('totalAmount').textContent = `R${total}`;
+            document.getElementById('estimateBox').style.display = 'block';
+        }
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
+            
+            // Create email content
+            const emailContent = `
+                Booking Request from Pulse Dancers Website
+                
+                Host Name: ${formData.get('hostName')}
+                Phone: ${formData.get('phone')}
+                Email: ${formData.get('email')}
+                Event Date: ${formData.get('eventDate')}
+                Reason: ${formData.get('eventReason')}
+                Address: ${formData.get('eventAddress')}
+                Area: ${formData.get('eventArea')}
+                Services: ${services.join(', ')}
+                Additional Info: ${formData.get('additionalInfo')}
+                
+                Estimate: ${document.getElementById('totalAmount').textContent}
+            `;
+
+            // In a real implementation, this would submit to a server
+            // For now, we'll show a success message
+            alert('Booking request submitted! We will contact you shortly with confirmation and payment details.');
+            
+            // Reset form
+            this.reset();
+            document.getElementById('estimateBox').style.display = 'none';
+        });
+
+        // Event listeners for estimate updates
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'services' || e.target.id === 'eventAddress') {
+                updateEstimate();
+            }
+        });
+
+        // Initialize slideshows when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlideshows();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
