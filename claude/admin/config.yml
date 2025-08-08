@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images/performers"
+public_folder: "/images/performers"
 
 collections:
   - name: "performers"
@@ -13,17 +13,18 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Name", name: "name", widget: "string"}
-      - {label: "Photo", name: "photo", widget: "image"}
+      - {label: "Main Photo", name: "photo", widget: "image"}
+      - {label: "Additional Photos", name: "photos", widget: "list", field: {label: "Photo", name: "photo", widget: "image"}, required: false}
       - {label: "Specialties", name: "specialties", widget: "string"}
       - {label: "Bio", name: "bio", widget: "text", required: false}
       
-  - name: "pages"
-    label: "Pages"
+  - name: "settings"
+    label: "Site Settings"
     files:
       - file: "content/homepage.md"
-        label: "Homepage"
+        label: "Homepage Content"
         name: "homepage"
         fields:
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text"}
-          - {label: "Hero Image", name: "hero_image", widget: "image", required: false}
+          - {label: "Main Text", name: "main_text", widget: "markdown"}
