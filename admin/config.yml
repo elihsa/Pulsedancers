@@ -1,0 +1,101 @@
+﻿backend:
+  name: git-gateway
+  branch: main
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+collections:
+  - name: "home"
+    label: "Homepage"
+    files:
+      - file: "data/home.json"
+        label: "Hero, About & Services"
+        name: "home"
+        fields:
+          - {label: "Logo Image", name: "logo", widget: "image"}
+          - {label: "Hero Image", name: "hero_image", widget: "image"}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text"}
+          - {label: "CTA Text", name: "cta_text", widget: "string"}
+          - {label: "CTA URL", name: "cta_url", widget: "string"}
+          - {label: "About Title", name: "about_title", widget: "string"}
+          - label: "About Paragraphs"
+            name: "about_paragraphs"
+            widget: "list"
+            field: {label: "Paragraph", name: "paragraph", widget: "text"}
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            field: {label: "Service", name: "service", widget: "string"}
+  - name: "prices"
+    label: "Prices"
+    files:
+      - file: "data/prices.json"
+        label: "Prices"
+        name: "prices"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Duration", name: "duration", widget: "string", required: false}
+              - {label: "Price", name: "price", widget: "string"}
+          - {label: "Notes", name: "notes", widget: "text", required: false}
+  - name: "faq"
+    label: "FAQ"
+    files:
+      - file: "data/faq.json"
+        label: "FAQ"
+        name: "faq"
+        fields:
+          - label: "Groups"
+            name: "groups"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - label: "Q&As"
+                name: "qas"
+                widget: "list"
+                fields:
+                  - {label: "Question", name: "q", widget: "string"}
+                  - {label: "Answer", name: "a", widget: "text"}
+  - name: "booking"
+    label: "Booking Settings"
+    files:
+      - file: "data/booking.json"
+        label: "Travel & Quote Settings"
+        name: "booking"
+        fields:
+          - {label: "Base Location Address", name: "base_location_address", widget: "string"}
+          - {label: "Free KM", name: "free_km", widget: "number", value_type: "int"}
+          - {label: "Rand per KM", name: "rand_per_km", widget: "number", value_type: "int"}
+          - {label: "Currency Symbol", name: "currency", widget: "string", default: "R"}
+          - {label: "Dancers per Guests (recommendation)", name: "dancer_per_guests", widget: "number", value_type: "int", required: false}
+  - name: "testimonials"
+    label: "Testimonials (Approved)"
+    files:
+      - file: "data/testimonials.json"
+        label: "Testimonials"
+        name: "testimonials"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Location", name: "location", widget: "string", required: false}
+              - {label: "Date", name: "date", widget: "datetime", required: false}
+  - name: "social"
+    label: "Social Embeds"
+    files:
+      - file: "data/social.json"
+        label: "Social Settings"
+        name: "social"
+        fields:
+          - {label: "Facebook Page URL", name: "facebook_page_url", widget: "string"}
+          - label: "Instagram Posts (2 URLs)"
+            name: "instagram_posts"
+            widget: "list"
+            field: {label: "Post URL", name: "url", widget: "string"}

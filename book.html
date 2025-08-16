@@ -1,0 +1,39 @@
+﻿<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pulse Dancers</title><link rel="icon" href="/images/logo.png"><link rel="canonical" href="/">
+<meta name="description" content="Pulse Dancers  male entertainment across South Africa. Topless & bottomless waiters, choreographed shows.">
+<meta property="og:title" content="Pulse Dancers"><meta property="og:description" content="South Africa's best male entertainment.">
+<meta property="og:type" content="website"><meta property="og:image" content="/images/hero.jpg"><meta property="og:url" content="/">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Pulse Dancers"><meta name="twitter:description" content="Choreographed shows, topless & bottomless waiters.">
+<link rel="stylesheet" href="/assets/css/styles.css"></head><body>
+<nav><div class="nav-inner"><a class="logo" href="/"><img src="/images/logo.png" alt="Pulse Dancers"><span class="brand">Pulse Dancers</span></a>
+<div class="links"><a href="/prices.html">Prices</a><a href="/faq.html">FAQ</a><a href="/join.html">Join</a><a class="button" href="/book.html">Book</a></div></div></nav>
+<div class="container">
+<section class="card"><h2>Book a Show</h2>
+<p class="small">This form uses Netlify Forms and Google Maps for a live travel estimate.</p>
+<form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="booking">
+<p class="small" style="display:none;"><label>Dont fill this out: <input name="bot-field" /></label></p>
+<div class="grid-2">
+<div class="card"><label>Full Name<input required name="name"></label></div>
+<div class="card"><label>Email<input required type="email" name="email"></label></div>
+<div class="card"><label>Phone<input name="phone"></label></div>
+<div class="card"><label>City<input name="city"></label></div>
+<div class="card"><label>Event Type<select name="event_type"><option>Bachelorette</option><option>Birthday</option><option>Girls Night</option><option>Corporate</option><option>Other</option></select></label></div>
+<div class="card"><label>Event Date<input type="date" name="date"></label></div>
+<div class="card"><label>Event Time<input type="time" name="time"></label></div>
+<div class="card"><label>Guests<select id="guests" name="guests"><option><10</option><option>1020</option><option>2040</option><option>40+</option></select></label></div>
+<div class="card"><label>Service<select id="service" name="service"><option>1 Man Xpress Show</option><option>1 Man Show</option><option>2 Man Show</option><option>3 Man Show</option><option>4 Man Show</option><option>Topless Waiter</option><option>Bottomless Waiter</option><option>Naughty Games</option></select></label></div>
+<div class="card"><label>Performers<select id="performers" name="performers"><option>1</option><option>2</option><option>3</option><option>4</option></select></label></div>
+<fieldset class="card" style="grid-column:1/-1"><legend>Where should we go?</legend><label><input type="radio" name="loc_type" value="address" checked> Exact Address</label> <label><input type="radio" name="loc_type" value="area"> Area / Suburb / City</label>
+<div id="address_wrap" style="margin-top:8px;"><label>Exact Address<input id="exact_address" name="exact_address" placeholder="Start typing (autocomplete)"></label></div>
+<div id="area_wrap" style="margin-top:8px;display:none;"><label>Area/Suburb/City<input id="area_input" name="area"></label></div>
+<script>document.addEventListener('change',function(e){ if(e.target.name==='loc_type'){ var a=document.getElementById('address_wrap'); var b=document.getElementById('area_wrap'); if(e.target.value==='address'){ a.style.display='block'; b.style.display='none'; } else { a.style.display='none'; b.style.display='block'; } }});</script>
+</fieldset>
+<div class="card" style="grid-column:1/-1"><label>Details<textarea name="details" rows="5" placeholder="Anything we should know?"></textarea></label></div>
+</div>
+<div class="card" style="margin-top:12px;"><h3>Estimate</h3><p class="small">Performance + travel (editable in CMS).</p><p>Travel: <strong data-travel>R 0</strong></p><p>Total: <strong data-total>R 0</strong></p></div>
+<div style="margin-top:12px;"><button class="button" type="submit">Submit Booking</button></div></form></section>
+<script src="/assets/js/booking-maps.js"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmIhz0iWcB8R-BBXkFFGi36bCQIm7fgA8&libraries=places&callback=initBookingMaps"></script>
+</div><footer><div class="container small"> Pulse Dancers  <a href="https://www.instagram.com/pulsesouthafrica" target="_blank" rel="noopener">Instagram</a>  <a href="https://www.facebook.com/pulseSouthAfrica" target="_blank" rel="noopener">Facebook</a></div></footer>
+<script src="/assets/js/app.js"></script></body></html>
