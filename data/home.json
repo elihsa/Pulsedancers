@@ -1,9 +1,22 @@
-{
-  "logo": "/images/uploads/pulse-logo-2011-red.png",
-  "hero_image": "/images/uploads/top.png",
-  "hero_title": "Hero Title",
-  "hero_subtitle": "/Hero subtitle",
-  "cta_text": "cta text",
-  "cta_url": "cta  url",
-  "about_title": "about title"
+﻿{
+    "hero_subtitle":  "Pulse Dancers is all about serious quality and South Africa\u0027s BEST male entertainment. These men are handpicked and only available here.",
+    "hero_title":  "Fulfill your Fantasies",
+    "about_paragraphs":  [
+                             "Host a packed Ladies Night with our famous choreographed Strip Show, MC, topless waiters and trained podium dancers to entertain the crowds.",
+                             "Based in Johannesburg, South Africa; with regular visits to Durban, Cape Town, Eastern Cape, Namibia, North West and more."
+                         ],
+    "hero_image":  "/images/hero.jpg",
+    "about_title":  "Welcome to PULSE",
+    "cta_text":  "Book now",
+    "cta_url":  "/book.html",
+    "logo":  "/images/logo.png",
+    "services":  [
+                     "Male Strippers",
+                     "Female Strippers",
+                     "Topless Waiters",
+                     "Bottomless Waiters",
+                     "Hot Promoters",
+                     "Fitness Models",
+                     "MC to play games for your Bachelorette Party"
+                 ]
 }

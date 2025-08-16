@@ -1,1 +1,7 @@
-﻿{"base_location_address":"Sandton City, Johannesburg","free_km":50,"rand_per_km":4,"currency":"R","dancer_per_guests":20}
+﻿{
+    "dancer_per_guests":  20,
+    "rand_per_km":  4,
+    "currency":  "R",
+    "base_location_address":  "Sandton City, Johannesburg",
+    "free_km":  50
+}

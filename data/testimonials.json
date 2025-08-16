@@ -1,5 +1,25 @@
-﻿{"items":[
-  {"name":"Leanne","rating":5,"text":"The one-man show was fantastic. Professional, fun and respectful. Highly recommended!","location":"Johannesburg","date":"2024-08-10"},
-  {"name":"Megan","rating":5,"text":"Topless waiters made our bachelorette! On time, friendly and great with guests.","location":"Cape Town","date":"2024-06-02"},
-  {"name":"Sam","rating":4,"text":"Naughty games had everyone laughing. Will book again for the next party.","location":"Durban","date":"2024-05-18"}
-]}
+﻿{
+    "items":  [
+                  {
+                      "date":  "2024-08-10",
+                      "rating":  5,
+                      "name":  "Leanne",
+                      "location":  "Johannesburg",
+                      "text":  "The one-man show was fantastic. Professional, fun and respectful. Highly recommended!"
+                  },
+                  {
+                      "date":  "2024-06-02",
+                      "rating":  5,
+                      "name":  "Megan",
+                      "location":  "Cape Town",
+                      "text":  "Topless waiters made our bachelorette! On time, friendly and great with guests."
+                  },
+                  {
+                      "date":  "2024-05-18",
+                      "rating":  4,
+                      "name":  "Sam",
+                      "location":  "Durban",
+                      "text":  "Naughty games had everyone laughing. Will book again for the next party."
+                  }
+              ]
+}

@@ -1,17 +1,65 @@
 ﻿{
-  "items":[
-    {"name":"1 Man Xpress Show","duration":"~13 mins","price":"R1800"},
-    {"name":"1 Man Show","duration":"~20 mins","price":"R2500"},
-    {"name":"2 Man Show","duration":"~25 mins","price":"R4000"},
-    {"name":"3 Man Show","duration":"~30 mins","price":"R6000"},
-    {"name":"4 Man Show","duration":"~35 mins","price":"R8000"},
-    {"name":"5 Man Show","duration":"~40 mins","price":"R10000"},
-    {"name":"6 Man Show","duration":"~45 mins","price":"R12000"},
-    {"name":"Naughty Games","duration":"~35 mins","price":"R1600"},
-    {"name":"Topless Waiter (per guy)","duration":"Per hour (min 2h)","price":"R750"},
-    {"name":"Topless Waiter (1 hour only)","duration":"Per guy","price":"R850"},
-    {"name":"Bottomless Waiter (per guy)","duration":"Per hour (min 2h)","price":"R850"},
-    {"name":"Bottomless Waiter (1 hour only)","duration":"Per guy","price":"R950"}
-  ],
-  "notes":"Durations are guidelines. Rates exclude sustenance and transport."
+    "items":  [
+                  {
+                      "price":  "R1800",
+                      "duration":  "~13 mins",
+                      "name":  "1 Man Xpress Show"
+                  },
+                  {
+                      "price":  "R2500",
+                      "duration":  "~20 mins",
+                      "name":  "1 Man Show"
+                  },
+                  {
+                      "price":  "R4000",
+                      "duration":  "~25 mins",
+                      "name":  "2 Man Show"
+                  },
+                  {
+                      "price":  "R6000",
+                      "duration":  "~30 mins",
+                      "name":  "3 Man Show"
+                  },
+                  {
+                      "price":  "R8000",
+                      "duration":  "~35 mins",
+                      "name":  "4 Man Show"
+                  },
+                  {
+                      "price":  "R10000",
+                      "duration":  "~40 mins",
+                      "name":  "5 Man Show"
+                  },
+                  {
+                      "price":  "R12000",
+                      "duration":  "~45 mins",
+                      "name":  "6 Man Show"
+                  },
+                  {
+                      "price":  "R1600",
+                      "duration":  "~35 mins",
+                      "name":  "Naughty Games"
+                  },
+                  {
+                      "price":  "R750",
+                      "duration":  "Per hour (min 2h)",
+                      "name":  "Topless Waiter (per guy)"
+                  },
+                  {
+                      "price":  "R850",
+                      "duration":  "Per guy",
+                      "name":  "Topless Waiter (1 hour only)"
+                  },
+                  {
+                      "price":  "R850",
+                      "duration":  "Per hour (min 2h)",
+                      "name":  "Bottomless Waiter (per guy)"
+                  },
+                  {
+                      "price":  "R950",
+                      "duration":  "Per guy",
+                      "name":  "Bottomless Waiter (1 hour only)"
+                  }
+              ],
+    "notes":  "Durations are guidelines. Rates exclude sustenance and transport."
 }
